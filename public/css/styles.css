@@ -1,0 +1,13 @@
+@import "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
+
+body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; }
+header { background: #333; color: white; padding: 15px; text-align: center; }
+main { padding: 20px; }
+.tarjeta { background: white; padding: 15px; margin: 10px; border-radius: 8px; display: inline-block; width: 150px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+.enfocado { color: green; font-weight: bold; }
+.distraído { color: orange; font-weight: bold; }
+.somnoliento { color: red; font-weight: bold; }
+
+body {
+  font-family: 'Inter', sans-serif;
+}

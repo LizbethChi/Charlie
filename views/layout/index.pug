@@ -1,0 +1,53 @@
+// views/layout/index.pug
+doctype html
+html(lang="es" class="dark")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{title}
+    script(src="https://cdn.tailwindcss.com?plugins=forms,container-queries")
+    link(href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap", rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined", rel="stylesheet")
+    script.
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#38bdf8",
+              "background-dark": "#0d1117",
+              "card-dark": "#161b22",
+              "text-light": "#e6edf3",
+              "border-dark": "#30363d"
+            }
+          }
+        }
+      };
+    style.
+      body { font-family: 'Inter', sans-serif; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+
+  body.bg-background-dark.text-text-light.font-display.flex.min-h-screen
+    // Sidebar global (estático)
+    aside(class="w-64 bg-card-dark border-r border-border-dark flex flex-col shrink-0")
+      div(class="flex h-16 items-center gap-3 px-6 border-b border-border-dark")
+        span(class="material-symbols-outlined text-primary text-3xl") local_shipping
+        h2(class="text-xl font-bold text-white") FleetMonitor
+      nav(class="flex-1 flex flex-col gap-2 p-4")
+        a(class="flex items-center gap-3 rounded-lg px-3 py-2 text-white/70 hover:text-white transition-all", href="/dashboard")
+          span(class="material-symbols-outlined text-xl") dashboard
+          span Dashboard
+        a(class="flex items-center gap-3 rounded-lg px-3 py-2 text-white/70 hover:text-white transition-all", href="/reportes")
+          span(class="material-symbols-outlined text-xl") bar_chart
+          span Reportes
+        a(class="flex items-center gap-3 rounded-lg px-3 py-2 text-white/70 hover:text-white transition-all", href="/configuracion")
+          span(class="material-symbols-outlined text-xl") settings
+          span Configuración
+
+    // Aquí se inyecta el contenido dinámico
+    main.flex-1.p-6
+      block mainContent
+
+    script(src="/js/main.js")
