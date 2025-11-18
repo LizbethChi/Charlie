@@ -1,0 +1,55 @@
+extends ./layout/index.pug
+
+block mainContent
+  // ===========================
+  // ENCABEZADO
+  // ===========================
+  header(class="mb-8 flex justify-between items-center")
+    h1(class="text-2xl font-bold text-white") Configuración del sistema
+
+  // ===========================
+  // AJUSTES GENERALES
+  // ===========================
+  section(class="bg-card-dark p-6 rounded-2xl shadow-md mb-8")
+    h2(class="text-lg font-semibold text-gray-200 mb-4") Ajustes generales
+    form(class="grid grid-cols-1 md:grid-cols-2 gap-4")
+      div
+        label(class="text-gray-400 text-sm") Nombre del sistema
+        input(type="text" placeholder="Fleet Monitor" class="w-full mt-1 p-2 rounded-lg bg-gray-800 text-gray-200 border border-gray-700")
+      div
+        label(class="text-gray-400 text-sm") Tiempo de alerta inactividad (segundos)
+        input(type="number" placeholder="10" class="w-full mt-1 p-2 rounded-lg bg-gray-800 text-gray-200 border border-gray-700")
+      div
+        label(class="text-gray-400 text-sm") Intensidad mínima para alerta
+        input(type="number" placeholder="50" class="w-full mt-1 p-2 rounded-lg bg-gray-800 text-gray-200 border border-gray-700")
+      div
+        label(class="text-gray-400 text-sm") Notificaciones activadas
+        select(class="w-full mt-1 p-2 rounded-lg bg-gray-800 text-gray-200 border border-gray-700")
+          option(value="si") Sí
+          option(value="no") No
+    button(class="mt-4 bg-primary hover:bg-blue-400 text-white px-4 py-2 rounded-lg transition-all") Guardar cambios
+
+  // ===========================
+  // USUARIOS / ROLES
+  // ===========================
+  section(class="bg-card-dark p-6 rounded-2xl shadow-md")
+    h2(class="text-lg font-semibold text-gray-200 mb-4") Gestión de usuarios
+    table(class="w-full text-sm text-gray-300")
+      thead(class="text-gray-400 border-b border-gray-700")
+        tr
+          th(class="py-2 text-left") Nombre
+          th(class="py-2 text-left") Rol
+          th(class="py-2 text-left") Acción
+      tbody
+        tr
+          td Juan Pérez
+          td Administrador
+          td
+            button(class="bg-red-600 hover:bg-red-500 text-white px-2 py-1 rounded-lg text-xs") Eliminar
+            button(class="bg-green-600 hover:bg-green-500 text-white px-2 py-1 rounded-lg text-xs ml-1") Editar
+        tr
+          td María López
+          td Supervisor
+          td
+            button(class="bg-red-600 hover:bg-red-500 text-white px-2 py-1 rounded-lg text-xs") Eliminar
+            button(class="bg-green-600 hover:bg-green-500 text-white px-2 py-1 rounded-lg text-xs ml-1") Editar

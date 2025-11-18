@@ -14,6 +14,8 @@ app.set("view engine", "pug");
 
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static('public'));
+
 
 // Rutas
 app.use("/", dashboardRoutes);

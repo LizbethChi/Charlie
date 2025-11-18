@@ -11,3 +11,15 @@ export const reportes = (req, res) => {
     title: "Reportes - Fleet Monitor",
   });
 };
+
+export const operadores = (req, res) => {
+  res.render("operadores", {
+    title: "Operadores",
+  });
+}
+
+export const configuracion = (req, res) => {
+  res.render("configuracion", {
+    title: "Configuración - Fleet Monitor"
+  });
+};
