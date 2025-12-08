@@ -1,4 +1,10 @@
 export const mostrarDashboard = (req, res) => {
+  try {
+    const token = req.cookies.access_token;
+
+  } catch (error) {
+    
+  }
   res.render("dashboard", {
     title: "Fleet Monitor Dashboard",
     active: "dashboard"

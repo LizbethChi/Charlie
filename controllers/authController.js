@@ -9,6 +9,11 @@ export const formularioLogin = (req, res) => {
   });
 };
 
+export const cerrarSesion = (req, res) =>{
+  res.clearCookie('access_token');
+  return res.redirect('/auth/login');
+}
+
 export const autenticarUsuario = async (req, res) => {
   const { usuario, password } = req.body;
   if (!usuario||!password){
@@ -24,6 +29,13 @@ try {
     password: password
   });
   const tk= response.data.token;
+  res.cookie('access_token', tk,
+    {
+      httpOnly: true,
+      secure: false,
+      maxAge: 3600000,
+    }
+  );
   console.log('Acceso autorizado', response.data);
   return res.redirect('/dashboard');
 } catch (error) {
@@ -32,7 +44,7 @@ try {
     // Devolvemos al usuario al login con el mensaje de error
     return res.render("auth/login", {
       title: "Iniciar sesión",
-      error: "Usuario o contraseña incorrectos", 
+      error: error.message, 
       active: ""
     });
   
