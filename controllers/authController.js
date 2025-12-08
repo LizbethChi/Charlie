@@ -15,12 +15,13 @@ export const autenticarUsuario = async (req, res) => {
     return res.render("auth/login",{
       title: 'Iniciar sesion',
       error: 'Por favor rellene todos los campos',
+      active: ""
     })
   }
 try {
   const response = await axios.post('http://localhost:1234/users/login/', {
-    usuario,
-    password
+    username: usuario,
+    password: password
   });
   const tk= response.data.token;
   console.log('Acceso autorizado', response.data);
