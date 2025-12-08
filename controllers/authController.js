@@ -1,4 +1,5 @@
 // controllers/authController.js
+import axios, { Axios } from "axios";
 
 export const formularioLogin = (req, res) => {
   res.render("auth/login", {
@@ -8,31 +9,31 @@ export const formularioLogin = (req, res) => {
   });
 };
 
-export const autenticarUsuario = (req, res) => {
+export const autenticarUsuario = async (req, res) => {
   const { usuario, password } = req.body;
-
-  // Usuario temporal
-  const USER = "admin@gmail.com";
-  const PASS = "1234";
-
-  // Validación básica
-  if (!usuario || !password) {
+  if (!usuario||!password){
+    return res.render("auth/login",{
+      title: 'Iniciar sesion',
+      error: 'Por favor rellene todos los campos',
+    })
+  }
+try {
+  const response = await axios.post('http://localhost:1234/users/login/', {
+    usuario,
+    password
+  });
+  const tk= response.data.token;
+  console.log('Acceso autorizado', response.data);
+  return res.redirect('/dashboard');
+} catch (error) {
+  console.log("Error en login:", error.response?.data || error.message);
+    
+    // Devolvemos al usuario al login con el mensaje de error
     return res.render("auth/login", {
       title: "Iniciar sesión",
-      error: "Todos los campos son obligatorios",
+      error: "Usuario o contraseña incorrectos", 
       active: ""
     });
-  }
-
-  // Validación de credenciales
-  if (usuario !== USER || password !== PASS) {
-    return res.render("auth/login", {
-      title: "Iniciar sesión",
-      error: "Credenciales incorrectas",
-      active: ""
-    });
-  }
-
-  // Si coincide → dashboard
-  return res.redirect("/dashboard");
+  
+}
 };
